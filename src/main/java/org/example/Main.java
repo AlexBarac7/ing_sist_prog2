@@ -6,6 +6,7 @@ import java.util.Collections;
 
 public class Main {
     public static void main(String[] args) {
+        //pb 1 cu toate subpunctele
         List<Integer> x = new ArrayList();
         List<Integer> y = new ArrayList();
         List<Integer> xPlusY = new ArrayList(); //a
