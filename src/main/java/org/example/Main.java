@@ -2,6 +2,7 @@ package org.example;
 
 import java.util.*;
 import java.util.stream.IntStream;
+import java.util.Collections;
 
 public class Main {
     public static void main(String[] args) {
@@ -37,7 +38,7 @@ public class Main {
         }
         System.out.println(xPlusYLimitedByP);
 
-        //pb 2
+        //pb 2 a) adaugare note
         List<Student> studenti = new ArrayList<>();
         studenti.add(new Student("Popescu", "Marian", "225_3"));
         studenti.add(new Student("Popescu", "Maria", "225_3"));
@@ -48,7 +49,41 @@ public class Main {
         studenti.add(new Student("Onofrei", "Mircea", "225_1"));
         for (Student s : studenti) {
             s.adaugaNote();
+        }
+
+        //b1) sortare alfabetica
+        Collections.sort(studenti, new ByGroupsComparator());
+        System.out.println("Sortati dupa grupa, nume si prenume:");
+        for (Student s : studenti) {
             System.out.println(s);
+        }
+        System.out.println();
+
+        //b2) sortare descrescatoare a mediilor pentru integralisti
+        List<Student> integralisti =  new ArrayList<>();
+        List<Student> restantieri =   new ArrayList<>();
+        for (Student s : studenti) {
+            if (s.esteIntegralist()) {
+                integralisti.add(s);
+            }
+            else  {
+                restantieri.add(s);
+            }
+        }
+        Collections.sort(integralisti, new ByGradesComparator());
+        System.out.println("Integralisti sortati descrescator dupa medie: ");
+        for (Student s : integralisti) {
+            System.out.println(s);
+            System.out.println("Media: " + s.medie());
+        }
+        System.out.println();
+
+        //b3) sortare crescatoare a numarului de restante pentru restantieri
+        Collections.sort(restantieri, new ByFailsComparator());
+        System.out.println("Restantieri sortati crescator dupa nr de restante:");
+        for (Student s : restantieri) {
+            System.out.println(s);
+            System.out.println("Numar de restante: " + s.numarRestante());
         }
     }
 }

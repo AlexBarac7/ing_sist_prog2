@@ -18,28 +18,42 @@ public class Student {
     }
     public String getNume() {
         return nume;
-
+    }
+    public String getPrenume() {
+        return prenume;
     }
     public String getGrupa() {
         return grupa;
     }
-    public void adaugaNote(){
+    public void adaugaNote() {
         Random rand = new Random();
-        for (int i = 0; i < note.size(); i++){
-            note.add(rand.nextInt(10)+4);
+        for (int i = 0; i < 5; i++) {
+            note.add(rand.nextInt(7) + 4);
         }
     }
     public boolean esteIntegralist(){
+        for (Integer i : note) {
+            if (i<5)
+                return false;
+        }
         return true;
     }
-    public Integer medie(){
-        int nr = note.size(), suma = 0, medie = 0;
-        for  (int i = 0; i < note.size(); i++){
-            suma += note.get(i);
+    public double medie(){
+        int suma = 0;
+        for  (Integer nota : note){
+            suma += nota;
     }
-        medie = suma / nr;
-        return medie;
+        return suma / 5.0;
 }
+    public int numarRestante() {
+        int nr = 0;
+        for (Integer nota : note) {
+            if (nota < 5) {
+                nr++;
+            }
+        }
+        return nr;
+    }
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
